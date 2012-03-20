@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TimeLight.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ViewLedger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">View Ledger</Value>
+    </Setting>
+    <Setting Name="Exit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Exit</Value>
+    </Setting>
+    <Setting Name="NoActiveItem" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">There is no active item</Value>
+    </Setting>
+    <Setting Name="LoadLedger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Reload Ledger</Value>
+    </Setting>
+    <Setting Name="CannotLoad" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Cannot reload while timing</Value>
+    </Setting>
+    <Setting Name="Viewer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">notepad.exe</Value>
+    </Setting>
+    <Setting Name="Ledger" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TimeLight.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

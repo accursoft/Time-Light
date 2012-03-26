@@ -16,24 +16,43 @@ namespace TimeLight
         Ledger ledger;
         Timer timer;
         Controller controller;
+        FileSystemWatcher watcher;
 
         public View()
         {
+            //create model and controller
             ledger = new Ledger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Settings.Default.Ledger));
             timer = new Timer();
             controller = new Controller(ledger, timer);
             tray = new NotifyIcon() { Icon = Resources.Off };
 
+            //subscribe to model
             timer.TimingChanged += timing => { tray.Icon = timing ? Resources.On : Resources.Off; };
             ledger.ActiveChanged += active => { tray.Text = active == null ? Application.ProductName : active; };
             ledger.LedgerChanged += CreateContextMenu;
 
             controller.LoadLedger();
 
+           //watch for changes to the ledger
+           watcher = new FileSystemWatcher(Path.GetDirectoryName(ledger.File), Path.GetFileName(ledger.File)) 
+               { NotifyFilter = NotifyFilters.LastWrite };
+
+           watcher.Changed += (sender, e) => {
+               BypassWatcher(delegate {
+                   if (timer.Timing)
+                       MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   else
+                       tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
+               });
+           };
+
+           watcher.EnableRaisingEvents = true;
+
+           //subscribe to mouse event
             tray.MouseClick += (sender, e) => {
                 if (e.Button == MouseButtons.Left)
                     if (timer.Timing)
-                        controller.Stop();
+                        BypassWatcher(controller.Stop);
                     else {
                         if (ledger.Active == null)
                             MessageBox.Show(Settings.Default.NoActiveItem, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -42,6 +61,13 @@ namespace TimeLight
                     }
             };
             tray.Visible = true;
+        }
+
+        void BypassWatcher(Action action)
+        {
+            watcher.EnableRaisingEvents = false;
+            action();
+            watcher.EnableRaisingEvents = true;
         }
 
         #region menu
@@ -58,18 +84,10 @@ namespace TimeLight
             //view ledger
             tray.ContextMenuStrip.Items.Add(new ToolStripMenuItem(Settings.Default.ViewLedger, null, delegate { Process.Start(Settings.Default.Viewer, ledger.File); }));
 
-            //reload ledger
-            tray.ContextMenuStrip.Items.Add(new ToolStripMenuItem(Settings.Default.LoadLedger, null, delegate {
-                if (timer.Timing)
-                    MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    controller.LoadLedger();
-            }));
-
             //exit
             tray.ContextMenuStrip.Items.Add(new ToolStripMenuItem(Settings.Default.Exit, null, delegate {
                 if (timer.Timing)
-                    controller.Stop();
+                    BypassWatcher(controller.Stop);
                 Application.Exit();
             }));
         }
@@ -88,10 +106,14 @@ namespace TimeLight
 
         public void Dispose()
         {
-            if (tray == null) return;
-
-            tray.Dispose();
-            tray = null;
+            if (tray != null) {
+                tray.Dispose();
+                tray = null;
+            }
+            if (watcher != null) {
+                watcher.Dispose();
+                watcher = null;
+            }
         }
     }
 }

@@ -17,11 +17,11 @@ Each time the timer is stopped, the ledger totals are updated, including all anc
 
 If a node has a billed attribute, an unbilled attribute will be set to total hours - billed.
 
-The ledger must be reloaded if it is updated while the program is running.
+The ledger will be automatically reloaded if it is updated while the program is running.
 
 Logging can be configured in the settings file. If the event log is used, the program must be run once as administrator to create the event source.
 
-The settings file specifies the path to the ledger relative to the user's documents folder, and the program used for viewing.
+The settings file specifies the path to the ledger relative to the user's documents folder, and the program used for viewing/editing.
 
 Example ledger
 ==============

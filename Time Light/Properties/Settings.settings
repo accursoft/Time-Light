@@ -11,11 +11,9 @@
     <Setting Name="NoActiveItem" Type="System.String" Scope="Application">
       <Value Profile="(Default)">There is no active item</Value>
     </Setting>
-    <Setting Name="LoadLedger" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Reload Ledger</Value>
-    </Setting>
     <Setting Name="CannotLoad" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Cannot reload while timing</Value>
+      <Value Profile="(Default)">The ledger has changed while  timing.
+It will be overwritten when the timer  is stopped.</Value>
     </Setting>
     <Setting Name="Viewer" Type="System.String" Scope="User">
       <Value Profile="(Default)">notepad.exe</Value>

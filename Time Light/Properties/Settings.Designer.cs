@@ -52,16 +52,8 @@ namespace TimeLight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Reload Ledger")]
-        public string LoadLedger {
-            get {
-                return ((string)(this["LoadLedger"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Cannot reload while timing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("The ledger has changed while  timing.\r\nIt will be overwritten when the timer  is " +
+            "stopped.")]
         public string CannotLoad {
             get {
                 return ((string)(this["CannotLoad"]));

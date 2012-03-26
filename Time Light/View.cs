@@ -20,8 +20,15 @@ namespace TimeLight
 
         public View()
         {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Settings.Default.Ledger);
+
+            if (!File.Exists(path)) {
+                File.WriteAllText(path, Settings.Default.NewLedger);
+                MessageBox.Show(string.Format(Settings.Default.CreatedLedger, path), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             //create model and controller
-            ledger = new Ledger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Settings.Default.Ledger));
+            ledger = new Ledger(path);
             timer = new Timer();
             controller = new Controller(ledger, timer);
             tray = new NotifyIcon() { Icon = Resources.Off };

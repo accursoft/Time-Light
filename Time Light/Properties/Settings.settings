@@ -19,10 +19,20 @@ It will be overwritten when the timer  is stopped.</Value>
       <Value Profile="(Default)">notepad.exe</Value>
     </Setting>
     <Setting Name="Ledger" Type="System.String" Scope="User">
-      <Value Profile="(Default)">TimeLight.xml</Value>
+      <Value Profile="(Default)">Time Light.xml</Value>
     </Setting>
     <Setting Name="Reloaded" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Reloaded Ledger</Value>
+    </Setting>
+    <Setting Name="CreatedLedger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">An empty ledger has been created at {0}.
+Please right-click Time Light and select "View Ledger", or open it in your favourite XML editor.</Value>
+    </Setting>
+    <Setting Name="NewLedger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;node&gt;
+  &lt;leaf name="My Task"/&gt;
+&lt;/node&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

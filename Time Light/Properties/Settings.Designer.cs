@@ -74,7 +74,7 @@ namespace TimeLight.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TimeLight.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Time Light.xml")]
         public string Ledger {
             get {
                 return ((string)(this["Ledger"]));
@@ -90,6 +90,26 @@ namespace TimeLight.Properties {
         public string Reloaded {
             get {
                 return ((string)(this["Reloaded"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("An empty ledger has been created at {0}.\r\nPlease right-click Time Light and selec" +
+            "t \"View Ledger\", or open it in your favourite XML editor.")]
+        public string CreatedLedger {
+            get {
+                return ((string)(this["CreatedLedger"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<node>\r\n  <leaf name=\"My Task\"/>\r\n</node>" +
+            "")]
+        public string NewLedger {
+            get {
+                return ((string)(this["NewLedger"]));
             }
         }
     }

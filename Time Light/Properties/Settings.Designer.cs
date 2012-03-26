@@ -83,5 +83,14 @@ namespace TimeLight.Properties {
                 this["Ledger"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Reloaded Ledger")]
+        public string Reloaded {
+            get {
+                return ((string)(this["Reloaded"]));
+            }
+        }
     }
 }

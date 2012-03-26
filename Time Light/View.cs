@@ -33,22 +33,28 @@ namespace TimeLight
 
             controller.LoadLedger();
 
-           //watch for changes to the ledger
-           watcher = new FileSystemWatcher(Path.GetDirectoryName(ledger.File), Path.GetFileName(ledger.File)) 
-               { NotifyFilter = NotifyFilters.LastWrite };
+            //watch for changes to the ledger
+            watcher = new FileSystemWatcher(Path.GetDirectoryName(ledger.File), Path.GetFileName(ledger.File)) { NotifyFilter = NotifyFilters.LastWrite };
 
-           watcher.Changed += (sender, e) => {
-               BypassWatcher(delegate {
-                   if (timer.Timing)
-                       MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                   else
-                       tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
-               });
-           };
+            watcher.Changed += (sender, e) => {
+                BypassWatcher(delegate {
+                    if (timer.Timing)
+                        MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else {
+                        if (tray.ContextMenuStrip.InvokeRequired)
+                            tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
+                        else
+                            controller.LoadLedger();
 
-           watcher.EnableRaisingEvents = true;
+                        tray.BalloonTipText = Settings.Default.Reloaded;
+                        tray.ShowBalloonTip(1000);
+                    }
+                });
+            };
 
-           //subscribe to mouse event
+            watcher.EnableRaisingEvents = true;
+
+            //subscribe to mouse event
             tray.MouseClick += (sender, e) => {
                 if (e.Button == MouseButtons.Left)
                     if (timer.Timing)

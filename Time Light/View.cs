@@ -24,7 +24,7 @@ namespace TimeLight
 
             if (!File.Exists(path)) {
                 File.WriteAllText(path, Settings.Default.NewLedger);
-                MessageBox.Show(string.Format(Settings.Default.CreatedLedger, path), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Settings.Default.CreatedLedger, path), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             //create model and controller

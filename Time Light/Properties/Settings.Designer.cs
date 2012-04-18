@@ -112,5 +112,15 @@ namespace TimeLight.Properties {
                 return ((string)(this["NewLedger"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("An error has occurred. If you believe this to be an application error, please rep" +
+            "ort it to http://timelight.codeplex.com/WorkItem/Create.\r\n\r\n")]
+        public string Error {
+            get {
+                return ((string)(this["Error"]));
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Diagnostics;
+using System.Threading;
 
 using TimeLight.Properties;
 
@@ -48,6 +49,8 @@ namespace TimeLight
                     if (timer.Timing)
                         MessageBox.Show(Settings.Default.ChangedWhileTiming, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else {
+                        //wait for file locks
+                        Thread.Sleep(200);
                         try {
                             if (tray.ContextMenuStrip.InvokeRequired)
                                 tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
@@ -83,6 +86,7 @@ namespace TimeLight
             tray.Visible = true;
         }
 
+        //avoid redundant events
         void BypassWatcher(Action action)
         {
             watcher.EnableRaisingEvents = false;

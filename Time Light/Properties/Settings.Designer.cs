@@ -52,11 +52,11 @@ namespace TimeLight.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("The ledger has changed while  timing.\r\nIt will be overwritten when the timer  is " +
-            "stopped.")]
-        public string CannotLoad {
+        [global::System.Configuration.DefaultSettingValueAttribute("The ledger has changed while timing.\r\nIt will be OVERWRITTEN when the timer is st" +
+            "opped.")]
+        public string ChangedWhileTiming {
             get {
-                return ((string)(this["CannotLoad"]));
+                return ((string)(this["ChangedWhileTiming"]));
             }
         }
         
@@ -120,6 +120,16 @@ namespace TimeLight.Properties {
         public string Error {
             get {
                 return ((string)(this["Error"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("The ledger has changed, but could not be loaded.\r\nIt will be OVERWRITTEN when the" +
+            " timer is next stopped.")]
+        public string CannotLoad {
+            get {
+                return ((string)(this["CannotLoad"]));
             }
         }
     }

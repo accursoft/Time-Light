@@ -23,7 +23,7 @@ namespace TimeLight
             }
         }
 
-        static void Handle(Exception e)
+        internal static void Handle(Exception e)
         {
             //create error report
             StringBuilder s = new StringBuilder();

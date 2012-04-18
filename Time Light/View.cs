@@ -46,12 +46,19 @@ namespace TimeLight
             watcher.Changed += (sender, e) => {
                 BypassWatcher(delegate {
                     if (timer.Timing)
-                        MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Settings.Default.ChangedWhileTiming, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else {
-                        if (tray.ContextMenuStrip.InvokeRequired)
-                            tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
-                        else
-                            controller.LoadLedger();
+                        try {
+                            if (tray.ContextMenuStrip.InvokeRequired)
+                                tray.ContextMenuStrip.Invoke(new Action(controller.LoadLedger));
+                            else
+                                controller.LoadLedger();
+                        }
+                        catch (Exception ex) {
+                            Program.Handle(ex);
+                            MessageBox.Show(Settings.Default.CannotLoad, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
                         tray.BalloonTipText = Settings.Default.Reloaded;
                         tray.ShowBalloonTip(1000);

@@ -35,7 +35,7 @@ Please right-click Time Light and select "View Ledger", or open it in your favou
 &lt;/node&gt;</Value>
     </Setting>
     <Setting Name="Error" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">An error has occurred. If you believe this to be an application error, please report it to http://timelight.codeplex.com/WorkItem/Create.
+      <Value Profile="(Default)">An error has occurred. If you believe this to be an application error, please report it to http://code.accursoft.com/time-light/issues/new.
 
 </Value>
     </Setting>

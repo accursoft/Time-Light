@@ -26,15 +26,15 @@ eventcreate /id 1 /l application /t information /so "Time Light" /d "create even
 The settings file specifies the path to the ledger relative to the user's documents folder, and the program used for viewing/editing.
 
 Example ledger
-==============
+--------------
 
-<node>
-  <node name="Colors">
-    <leaf name="Orange" />
-    <node name="Primary">
-      <leaf name="Red" />
-      <leaf name="Green" />
+    <node>
+      <node name="Colors">
+        <leaf name="Orange" />
+        <node name="Primary">
+          <leaf name="Red" />
+          <leaf name="Green" />
+        </node>
+      </node>
+      <leaf name="Shapes" />
     </node>
-  </node>
-  <leaf name="Shapes" />
-</node>
